@@ -1,0 +1,580 @@
+<?xml version='1.0'?>
+<module>
+	<name>InsuranceContributions</name>
+	<label>InsuranceContributions</label>
+	<parent>Inventory</parent>
+	<version>662324.1.3</version>
+<dependencies>
+<vtiger_version>5.4.0</vtiger_version>
+<vtiger_max_version>5.4.0</vtiger_max_version>
+</dependencies>
+		<license>
+			<inline><![CDATA[/*+***********************************************************************************
+ * The contents of this file are subject to the vtiger CRM Public License Version 1.0
+ * ("License"); You may not use this file except in compliance with the License
+ * The Original Code is:  vtiger CRM Open Source
+ * The Initial Developer of the Original Code is vtiger.
+ * Portions created by vtiger are Copyright (C) vtiger.
+ * All Rights Reserved.
+
+    Language     : English
+    Addons       : insurance contributions
+ *  Version      : 5.2.1 , 5.3.0 , 5.4.0
+ *  Author       : mathias stavrou, www.mstavrou.com
+     
+ *************************************************************************************/]]></inline>
+		</license>
+	<tables>
+		<table>
+			<name>vtiger_insurancecontribution</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_insurancecontribution` (
+  `insurancecontributionid` int(11) default NULL,
+  `insurancecontributionname` varchar(100) default NULL,
+  `insurancecontributiontype` varchar(100) default NULL,
+  `parent` varchar(100) default NULL,
+  `register` date default NULL,
+  `duedate` date default NULL,
+  `related` varchar(100) default NULL,
+  `month` varchar(100) default NULL,
+  `insurancecontributionlist` varchar(100) default NULL,
+  `cost` decimal(14,2) default NULL,
+  `afm` varchar(100) default NULL,
+  `amka` varchar(100) default NULL,
+  `asthenia` decimal(14,2) default NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>vtiger_insurancecontributioncf</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_insurancecontributioncf` (
+  `insurancecontributionid` int(11) NOT NULL,
+  PRIMARY KEY  (`insurancecontributionid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>vtiger_insurancecontributiongrouprel</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_insurancecontributiongrouprel` (
+  `insurancecontributionid` int(11) NOT NULL,
+  `groupname` varchar(100) default NULL,
+  PRIMARY KEY  (`insurancecontributionid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+	</tables>
+	<blocks>
+		<block>
+			<label>LBL_INSURANCECONTRIBUTION_INFORMATION</label>
+			<fields>
+				<field>
+<fieldname>insurancecontributionname</fieldname>
+<uitype>2</uitype>
+<columnname>insurancecontributionname</columnname>
+<tablename>vtiger_insurancecontribution</tablename>
+<generatedtype>1</generatedtype>
+<fieldlabel>InsuranceContributionsName</fieldlabel>
+<readonly>1</readonly>
+<presence>2</presence>
+<selected>0</selected>
+<sequence>1</sequence>
+<maximumlength>100</maximumlength><typeofdata>V~M</typeofdata>
+<quickcreate>0</quickcreate>
+<quickcreatesequence></quickcreatesequence>
+<displaytype>1</displaytype>
+<info_type>BAS</info_type>
+<helpinfo><![CDATA[]]></helpinfo>
+<masseditable>1</masseditable>
+<entityidentifier>
+<entityidfield>insurancecontributionid</entityidfield>
+<entityidcolumn>insurancecontributionid</entityidcolumn>
+</entityidentifier>
+</field>
+<field>
+<fieldname>parent</fieldname>
+<uitype>10</uitype>
+<columnname>parent</columnname>
+<tablename>vtiger_insurancecontribution</tablename>
+<generatedtype>1</generatedtype>
+<fieldlabel>parent</fieldlabel>
+<readonly>1</readonly>
+<presence>0</presence>
+<selected>0</selected>
+<sequence>2</sequence>
+<maximumlength>100</maximumlength><typeofdata>V~O</typeofdata>
+<quickcreate>0</quickcreate>
+<quickcreatesequence>0</quickcreatesequence>
+<displaytype>1</displaytype>
+<info_type>BAS</info_type>
+<helpinfo><![CDATA[]]></helpinfo>
+<masseditable>1</masseditable>
+<relatedmodules>
+<relatedmodule>Accounts</relatedmodule>
+<relatedmodule>Contacts</relatedmodule>
+</relatedmodules>
+</field>
+
+<field>
+<fieldname>Month</fieldname>
+<uitype>23</uitype>
+<columnname>month</columnname>
+<tablename>vtiger_insurancecontribution</tablename>
+<generatedtype>1</generatedtype>
+<fieldlabel>Month</fieldlabel>
+<readonly>1</readonly>
+<presence>2</presence>
+<selected>0</selected>
+<sequence>3</sequence>
+<maximumlength>100</maximumlength>
+<typeofdata>D~O</typeofdata>
+<quickcreate>0</quickcreate>
+<quickcreatesequence></quickcreatesequence>
+<displaytype>1</displaytype>
+<info_type>BAS</info_type>
+<helpinfo><![CDATA[]]></helpinfo>
+<masseditable>1</masseditable>
+</field>
+<field>
+<fieldname>related</fieldname>
+<uitype>10</uitype>
+<columnname>related</columnname>
+<tablename>vtiger_insurancecontribution</tablename>
+<generatedtype>1</generatedtype>
+<fieldlabel>related</fieldlabel>
+<readonly>1</readonly>
+<presence>0</presence>
+<selected>0</selected>
+<sequence>4</sequence>
+<maximumlength>100</maximumlength><typeofdata>V~O</typeofdata>
+<quickcreate>0</quickcreate>
+<quickcreatesequence>0</quickcreatesequence>
+<displaytype>1</displaytype>
+<info_type>BAS</info_type>
+<helpinfo><![CDATA[]]></helpinfo>
+<masseditable>1</masseditable>
+<relatedmodules>
+<relatedmodule>Project</relatedmodule>
+<relatedmodule>ProjectTask</relatedmodule>
+<relatedmodule>ProjectMilestone</relatedmodule>
+<relatedmodule>Assets</relatedmodule>
+<relatedmodule>Services</relatedmodule>
+<relatedmodule>ServiceContracts</relatedmodule>
+<relatedmodule>Quotes</relatedmodule>
+</relatedmodules>
+</field>
+</fields>
+</block>
+<block>
+<label>LBL_CUSTOM_INFORMATION</label>
+<fields>
+<field>
+<fieldname>insurancecontributiontype</fieldname>
+<uitype>15</uitype>
+<columnname>insurancecontributiontype</columnname>
+<tablename>vtiger_insurancecontribution</tablename>
+<generatedtype>1</generatedtype>
+<fieldlabel>insurancecontributiontype</fieldlabel>
+<readonly>1</readonly>
+<presence>2</presence>
+<selected>0</selected>
+<sequence>5</sequence>
+<maximumlength>100</maximumlength>
+<typeofdata>V~O</typeofdata>
+<quickcreate>1</quickcreate>
+<quickcreatesequence>2</quickcreatesequence>
+<displaytype>1</displaytype>
+<info_type>BAS</info_type>
+<helpinfo><![CDATA[]]></helpinfo>
+<masseditable>1</masseditable>
+<picklistvalues>
+<picklistvalue>--none--</picklistvalue>
+<picklistvalue>IKA</picklistvalue>
+<picklistvalue>TEBE</picklistvalue>
+<picklistvalue>OAEE</picklistvalue>
+<picklistvalue>OTHER</picklistvalue>
+</picklistvalues>
+</field>
+<field>
+<fieldname>insurancecontributionlist</fieldname>
+<uitype>15</uitype>
+<columnname>insurancecontributionlist</columnname>
+<tablename>vtiger_insurancecontribution</tablename>
+<generatedtype>1</generatedtype>
+<fieldlabel>insurancecontributionlist</fieldlabel>
+<readonly>1</readonly>
+<presence>0</presence>
+<selected>0</selected>
+<sequence>5</sequence>
+<maximumlength>100</maximumlength>
+<typeofdata>V~O</typeofdata>
+<quickcreate>1</quickcreate>
+<quickcreatesequence>2</quickcreatesequence>
+<displaytype>1</displaytype>
+<info_type>BAS</info_type>
+<helpinfo><![CDATA[]]></helpinfo>
+<masseditable>1</masseditable>
+<picklistvalues>
+<picklistvalue>--none--</picklistvalue>
+<picklistvalue>deleted</picklistvalue>
+<picklistvalue>arrived</picklistvalue>
+<picklistvalue>in progress</picklistvalue>
+<picklistvalue>completed</picklistvalue>
+<picklistvalue>finished</picklistvalue>
+<picklistvalue>prospecting</picklistvalue>
+</picklistvalues>
+</field>
+<field>
+<fieldname>register</fieldname>
+<uitype>5</uitype>
+<columnname>register</columnname>
+<tablename>vtiger_insurancecontribution</tablename>
+<generatedtype>1</generatedtype>
+<fieldlabel>Register</fieldlabel>
+<readonly>1</readonly>
+<presence>2</presence>
+<selected>0</selected>
+<sequence>6</sequence>
+<maximumlength>100</maximumlength>
+<typeofdata>D~O</typeofdata>
+<quickcreate>0</quickcreate>
+<quickcreatesequence>2</quickcreatesequence>
+<displaytype>1</displaytype>
+<info_type>BAS</info_type>
+<helpinfo><![CDATA[]]></helpinfo>
+<masseditable>1</masseditable>
+</field>
+<field>
+<fieldname>duedate</fieldname>
+<uitype>5</uitype>
+<columnname>duedate</columnname>
+<tablename>vtiger_insurancecontribution</tablename>
+<generatedtype>1</generatedtype>
+<fieldlabel>DueDate</fieldlabel>
+<readonly>1</readonly>
+<presence>2</presence>
+<selected>0</selected>
+<sequence>7</sequence>
+<maximumlength>100</maximumlength>
+<typeofdata>D~O</typeofdata>
+<quickcreate>1</quickcreate>
+<quickcreatesequence>0</quickcreatesequence>
+<displaytype>1</displaytype>
+<info_type>BAS</info_type>
+<helpinfo><![CDATA[]]></helpinfo>
+<masseditable>1</masseditable>
+</field>
+<field>
+<fieldname>cost</fieldname>
+<uitype>7</uitype>
+<columnname>cost</columnname>
+<tablename>vtiger_insurancecontribution</tablename>
+<generatedtype>1</generatedtype>
+<fieldlabel>Cost</fieldlabel>
+<readonly>1</readonly>
+<presence>0</presence>
+<selected>0</selected>
+<sequence>12</sequence>
+<maximumlength>100</maximumlength>
+<typeofdata>N~O</typeofdata>
+<quickcreate>0</quickcreate>
+<quickcreatesequence>0</quickcreatesequence>
+<displaytype>1</displaytype>
+<info_type>BAS</info_type>
+<helpinfo><![CDATA[]]></helpinfo>
+<masseditable>1</masseditable>
+</field>
+
+<field>
+<fieldname>amka</fieldname>
+<uitype>7</uitype>
+<columnname>amka</columnname>
+<tablename>vtiger_insurancecontribution</tablename>
+<generatedtype>1</generatedtype>
+<fieldlabel>amka</fieldlabel>
+<readonly>1</readonly>
+<presence>0</presence>
+<selected>0</selected>
+<sequence>13</sequence>
+<maximumlength>100</maximumlength>
+<typeofdata>V~O</typeofdata>
+<quickcreate>0</quickcreate>
+<quickcreatesequence>0</quickcreatesequence>
+<displaytype>1</displaytype>
+<info_type>BAS</info_type>
+<helpinfo><![CDATA[]]></helpinfo>
+<masseditable>1</masseditable>
+</field>
+<field>
+<fieldname>afm</fieldname>
+<uitype>7</uitype>
+<columnname>afm</columnname>
+<tablename>vtiger_insurancecontribution</tablename>
+<generatedtype>1</generatedtype>
+<fieldlabel>afm</fieldlabel>
+<readonly>1</readonly>
+<presence>0</presence>
+<selected>0</selected>
+<sequence>14</sequence>
+<maximumlength>100</maximumlength>
+<typeofdata>V~O</typeofdata>
+<quickcreate>0</quickcreate>
+<quickcreatesequence>0</quickcreatesequence>
+<displaytype>1</displaytype>
+<info_type>BAS</info_type>
+<helpinfo><![CDATA[]]></helpinfo>
+<masseditable>1</masseditable>
+</field>
+<field>
+<fieldname>asthenia</fieldname>
+<uitype>7</uitype>
+<columnname>asthenia</columnname>
+<tablename>vtiger_insurancecontribution</tablename>
+<generatedtype>1</generatedtype>
+<fieldlabel>asthenia</fieldlabel>
+<readonly>1</readonly>
+<presence>2</presence>
+<selected>0</selected>
+<sequence>8</sequence>
+<maximumlength>100</maximumlength>
+<typeofdata>N~O</typeofdata>
+<quickcreate>0</quickcreate>
+<quickcreatesequence>0</quickcreatesequence>
+<displaytype>1</displaytype>
+<info_type>BAS</info_type>
+<helpinfo><![CDATA[]]></helpinfo>
+<masseditable>1</masseditable>
+</field>
+<field>
+<fieldname>CreatedTime</fieldname>
+<uitype>70</uitype>
+<columnname>createdtime</columnname>
+<tablename>vtiger_crmentity</tablename>
+<generatedtype>1</generatedtype>
+<fieldlabel>Created Time</fieldlabel>
+<readonly>1</readonly>
+<presence>2</presence>
+<selected>0</selected>
+<sequence>9</sequence>
+<maximumlength>100</maximumlength>
+<typeofdata>T~O</typeofdata>
+<quickcreate>1</quickcreate>
+<quickcreatesequence></quickcreatesequence>
+<displaytype>2</displaytype>
+<info_type>BAS</info_type>
+<helpinfo><![CDATA[]]></helpinfo>
+<masseditable>1</masseditable>
+</field>
+<field>
+<fieldname>ModifiedTime</fieldname>
+<uitype>70</uitype>
+<columnname>modifiedtime</columnname>
+<tablename>vtiger_crmentity</tablename>
+<generatedtype>1</generatedtype>
+<fieldlabel>Modified Time</fieldlabel>
+<readonly>1</readonly>
+<presence>2</presence>
+<selected>0</selected>
+<sequence>10</sequence>
+<maximumlength>100</maximumlength>
+<typeofdata>T~O</typeofdata>
+<quickcreate>1</quickcreate>
+<quickcreatesequence></quickcreatesequence>
+<displaytype>2</displaytype>
+<info_type>BAS</info_type>
+<helpinfo><![CDATA[]]></helpinfo>
+<masseditable>1</masseditable>
+</field>
+<field>
+<fieldname>assigned_user_id</fieldname>
+<uitype>53</uitype>
+<columnname>smownerid</columnname>
+<tablename>vtiger_crmentity</tablename>
+<generatedtype>1</generatedtype>
+<fieldlabel>Assigned To</fieldlabel>
+<readonly>1</readonly>
+<presence>0</presence>
+<selected>0</selected>
+<sequence>14</sequence>
+<maximumlength>100</maximumlength>
+<typeofdata>V~M</typeofdata>
+<quickcreate>0</quickcreate>
+<quickcreatesequence></quickcreatesequence>
+<displaytype>1</displaytype>
+<info_type>BAS</info_type>
+<helpinfo><![CDATA[]]></helpinfo>
+<masseditable>1</masseditable>
+</field>
+</fields>
+</block>
+<block>
+<label>LBL_DESCRIPTION_INFORMATION</label>
+<fields>
+<field>
+<fieldname>description</fieldname>
+<uitype>19</uitype>
+<columnname>description</columnname>
+<tablename>vtiger_crmentity</tablename>
+<generatedtype>1</generatedtype>
+<fieldlabel>Description</fieldlabel>
+<readonly>1</readonly>
+<presence>2</presence>
+<selected>0</selected>
+<sequence>1</sequence>
+<maximumlength>100</maximumlength>
+<typeofdata>V~O</typeofdata>
+<quickcreate>1</quickcreate>
+<quickcreatesequence>10</quickcreatesequence>
+<displaytype>1</displaytype>
+<info_type>BAS</info_type>
+<helpinfo><![CDATA[]]></helpinfo>
+<masseditable>1</masseditable>
+</field>
+</fields>
+</block>
+</blocks>
+<customviews>
+<customview>
+<viewname>All</viewname>
+<setdefault>true</setdefault>
+<setmetrics>false</setmetrics>
+<fields>
+<field>
+<fieldname>insurancecontributionname</fieldname>
+<columnindex>0</columnindex>
+</field>
+<field>
+<fieldname>register</fieldname>
+<columnindex>1</columnindex>
+</field>
+<field>
+<fieldname>duedate</fieldname>
+<columnindex>2</columnindex>
+</field>
+<field>
+<fieldname>related</fieldname>
+<columnindex>3</columnindex>
+</field>
+<field>
+<fieldname>parent</fieldname>
+<columnindex>4</columnindex>
+</field>
+<field>
+<fieldname>insurancecontributiontype</fieldname>
+<columnindex>5</columnindex>
+</field>
+<field>
+<fieldname>insurancecontributionlist</fieldname>
+<columnindex>6</columnindex>
+</field>
+<field>
+<fieldname>cost</fieldname>
+<columnindex>7</columnindex>
+</field>
+<field>
+<fieldname>assigned_user_id</fieldname>
+<columnindex>9</columnindex>
+</field>
+</fields>
+</customview>
+<customview>
+<viewname>dikomou</viewname>
+<setdefault>false</setdefault>
+<setmetrics>false</setmetrics>
+<fields>
+<field>
+<fieldname>insurancecontributionname</fieldname>
+<columnindex>0</columnindex>
+<rules>
+<rule>
+<columnindex>0</columnindex>
+<comparator>CONTAINS</comparator>
+<value>Test</value>
+</rule>
+</rules>
+</field>
+<field>
+<fieldname>insurancecontributiontype</fieldname>
+<columnindex>1</columnindex>
+</field>
+<field>
+<fieldname>parent</fieldname>
+<columnindex>1</columnindex>
+</field>
+</fields>
+</customview>
+</customviews>
+<sharingaccess>
+<default>public_readwritedelete</default>
+</sharingaccess>
+<actions>
+<action>
+<name><![CDATA[Import]]></name>
+<status>enabled</status>
+</action>
+<action>
+<name><![CDATA[Export]]></name>
+<status>enabled</status>
+</action>
+<action>
+<name><![CDATA[Merge]]></name>
+<status>enabled</status>
+</action>
+</actions>
+<relatedlists>
+<relatedlist>
+<function>get_activities</function>
+<label>Activities</label>
+<sequence>1</sequence>
+<presence>0</presence>
+<actions>
+<action>ADD</action>
+<action>SELECT</action>
+</actions>
+<relatedmodule>Calendar</relatedmodule>
+</relatedlist>
+<relatedlist>
+<function>get_history</function>
+<label>Activity History</label>
+<sequence>2</sequence>
+<presence>0</presence>
+<actions>
+<action>ADD</action>
+</actions>
+<relatedmodule>Calendar</relatedmodule>
+</relatedlist>
+<relatedlist>
+<function>get_related_list</function>
+<label>Trouble Tickets</label>
+<sequence>3</sequence>
+<presence>0</presence>
+<actions>
+<action>ADD</action>
+<action>SELECT</action>
+</actions>
+<relatedmodule>HelpDesk</relatedmodule>
+</relatedlist>
+<relatedlist>
+<function>get_attachments</function>
+<label>Documents</label>
+<sequence>4</sequence>
+<presence>0</presence>
+<actions>
+<action>ADD</action>
+<action>SELECT</action>
+</actions>
+<relatedmodule>Documents</relatedmodule>
+</relatedlist>
+</relatedlists>
+<customlinks>
+<customlink>
+<linktype>DETAILVIEWBASIC</linktype>
+<linklabel>Add Documents</linklabel>
+<linkurl><![CDATA[index.php?module=Documents&action=EditView&return_module=InsuranceContributions&return_action=DetailView&return_id=$RECORD$&parent_id=$RECORD$]]></linkurl>
+<linkicon><![CDATA[]]></linkicon>
+<sequence>0</sequence>
+</customlink>
+<customlink>
+<linktype>DETAILVIEWBASIC</linktype>
+<linklabel>Add HelpDesk</linklabel>
+<linkurl><![CDATA[index.php?module=HelpDesk&action=EditView&return_module=InsuranceContributions&return_action=DetailView&return_id=$RECORD$&parent_id=$RECORD$&RLparent_id=$RECORD$&createmode=link]]></linkurl>
+<linkicon><![CDATA[]]></linkicon>
+<sequence>1</sequence>
+</customlink>
+</customlinks>
+</module>
