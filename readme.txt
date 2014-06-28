@@ -1,3 +1,5 @@
+vtiger - Insurance Contributions - Ασφαλιστικές Εισφορές
+
 Summary:
 
 This module provided sensitive information about employee state to supervisor or director, is based on insurance contributions of greece but
@@ -19,3 +21,18 @@ developed by mathias stavrou
 www.mstavrou.com
 
 m_stauroy@hotmail.com
+
+
+Άδεια χρήσης:
+
+Τα περιεχόμενα αυτού του αποθετηρίου υπόκεινται στην έκδοση του [VTiger Public License 1.0] 1
+
+Δεν μπορείτε να χρησιμοποιήσετε αυτό το αποθετήριο και τα περιεχόμενά του, χωρίς τη συμμόρφωση με την άδεια
+
+Ο Αρχικός Κώδικας είναι: vtiger CRM Ανοικτού Κώδικα
+
+Ο Αρχικός δημιουργός της πρωτοτύπου κώδικα είναι το vtiger.
+
+Τμήματα που δημιουργούνται από το vtiger είναι Πνευματική ιδιοκτησία (C) [vtiger] [2].
+
+Με επιφύλαξη παντός δικαιώματος.
