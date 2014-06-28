@@ -16,7 +16,7 @@ and read documentation about vtiger addons settings.
 
 Installation instructions:
 
-1. You can install insurance contributions like any other module. Open your Module Manager in the CRM and goto the custom module tab. Install the Asfalia.zip file (Do not unzip this files) provided with this download.
+1. You can install insurance contributions like any other module. Open your Module Manager in the CRM and goto the custom module tab. Install the InsuranceContributions.zip file (Do not unzip this files) provided with this download.
 
 2. Then you can put You can fill in the fields or change them to suit a particular operator
 
