@@ -1,0 +1,38 @@
+<?xml version='1.0'?>
+<schema>
+	<tables>
+		<table>
+			<name>vtiger_insurancecontribution</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_insurancecontribution` (
+  `insurancecontributionid` int(11) default NULL,
+  `insurancecontributionname` varchar(100) default NULL,
+  `insurancecontributiontype` varchar(100) default NULL,
+  `parent` varchar(100) default NULL,
+  `register` date default NULL,
+  `duedate` date default NULL,
+  `related` varchar(100) default NULL,
+  `month` varchar(100) default NULL,
+  `insurancecontributionlist` varchar(100) default NULL,
+  `cost` decimal(14,2) default NULL,
+  `afm` decimal(14,2) default NULL,
+  `amka` varchar(100) default NULL,
+  `asthenia` decimal(14,2) default NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>vtiger_insurancecontributioncf</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_insurancecontributioncf` (
+  `insurancecontributionid` int(11) NOT NULL,
+  PRIMARY KEY  (`insurancecontributionid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>vtiger_insurancecontributiongrouprel</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_insurancecontributiongrouprel` (
+  `insurancecontributionid` int(11) NOT NULL,
+  `groupname` varchar(100) default NULL,
+  PRIMARY KEY  (`insurancecontributionid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+	</tables>
+</schema>
