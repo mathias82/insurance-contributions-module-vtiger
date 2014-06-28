@@ -1,6 +1,8 @@
 vtiger - Insurance Contributions - Ασφαλιστικές Εισφορές
+==============================
 
 Summary:
+==============================
 
 This module provided sensitive information about employee state to supervisor or director, is based on insurance contributions of greece but
 you can easily modified like any other module, pressing insurance contributions settings
